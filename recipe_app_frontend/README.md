@@ -1,82 +1,59 @@
-# Lightweight React Template for KAVIA
+# Recipe Explorer Frontend
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+Modern React UI for browsing, searching, and managing recipes with Ocean Professional styling.
 
 ## Features
+- Modern, responsive UI (grid/list views, detailed recipe pages)
+- User authentication (login, signup, session persistence)
+- Mark/unmark favorites and see favorites per user
+- Create/edit recipes using modal dialogs
+- Multi-page routing with react-router
+- Axios-based API client configurable via env
+- Ocean Professional theme: primary #2563EB, accent #F59E0B, minimalist design
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+## Setup
 
-## Getting Started
+1) Install dependencies
+   npm install
 
-In the project directory, you can run:
+2) Configure environment
+   cp .env.example .env
+   # edit REACT_APP_API_BASE_URL to match your backend (default http://localhost:5000)
 
-### `npm start`
+3) Run the app
+   npm start
+   # open http://localhost:3000
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+4) Build for production
+   npm run build
 
-### `npm test`
+## Project Structure
+- src/api/*: Axios client and typed API calls (auth, recipes)
+- src/context/AuthContext.js: User session provider
+- src/components/*: UI components including RecipeCard, Modal, Layout, SearchBar
+- src/pages/*: Route pages (Home, Detail, Favorites, Profile, Login, Signup)
+- src/hooks/*: Data-fetching hooks (recipes, favorites)
+- src/index.css: Global Ocean Professional theme styles
 
-Launches the test runner in interactive watch mode.
+## Environment Variables
+- REACT_APP_API_BASE_URL: Base URL for Flask backend, e.g. http://localhost:5000
 
-### `npm run build`
+## Backend Endpoints (expected)
+- POST /auth/login, POST /auth/signup, GET /users/me
+- GET /recipes, GET /recipes/:id, POST /recipes, PUT /recipes/:id, DELETE /recipes/:id
+- POST /recipes/:id/favorite, GET /users/me/favorites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Notes:
+- The UI gracefully handles absent backend endpoints but some actions will no-op until the backend is implemented.
+- Replace placeholder images by setting image_url on recipes.
 
-## Customization
+## Style Guide
+Ocean Professional:
+- Primary: #2563EB (blue)
+- Accent: #F59E0B (amber)
+- Error: #EF4444
+- Background: #f9fafb
+- Surface: #ffffff
+- Typography: Inter or system UI
+- Subtle shadows, gradients, rounded corners, smooth transitions
 
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
-
-### Components
-
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
-
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
